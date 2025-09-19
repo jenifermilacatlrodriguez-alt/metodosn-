@@ -1,0 +1,239 @@
+
+
+```{r setup, include=FALSE}
+
+
+```
+
+
+
+```{r cars}
+
+---
+title: "Práctica completa en R"
+author: "Tu Nombre"
+date: "2025-09-18"
+output: html_document
+---
+
+```{r}
+# =====================================================
+# SESIÓN 1 — Operadores y funciones básicas
+# =====================================================
+
+# Operadores lógicos
+print("Operadores lógicos:")
+print(17 < 5)
+print(17 > 5)
+print(17 <= 5)
+print(17 >= 5)
+print(17 != 5)
+print(17 == 5)
+
+# Operadores aritméticos
+print("Operadores aritméticos:")
+print(17 + 5)
+print(17 - 5)
+print(17 * 5)
+print(17 / 5)
+print(17 ^ 5)
+print(17 %/% 5)   # división entera
+print(17 %% 5)    # módulo
+
+# Logaritmos y exponenciales
+print("Logaritmos y exponenciales:")
+print(log(1))
+print(log(12))
+print(log(12, base = 2))
+print(exp(12))
+print(exp(1))
+
+# Funciones trigonométricas
+print("Trigonometría (radianes):")
+print(sin(pi/4))       # √2/2
+print(cos(pi/3))       # 1/2
+print(tan(pi/6))       # 1/√3
+
+print("Ejemplo en grados (45°):")
+print(sin(45 * pi / 180))
+
+# funciones inversas
+print(asin(0.96))
+print(acos(0.97))
+print(atan(0.45))
+
+# Otras funciones útiles
+print("Otras funciones:")
+print(abs(-34))
+print(sqrt(8))
+print(floor(1.56))
+print(ceiling(1.56))
+print(max(4,7,2,12))
+print(min(4,7,2,12))
+print(sign(-45))
+
+# Ejercicios de práctica
+print("Ejercicio 1:")
+res1 <- cos(pi/6 + pi/2) + exp(1)^2
+print(res1)
+
+print("Ejercicio 2:")
+res2 <- cos(pi/6 + pi/2) + exp(1)^2 * log(5) + acos(1/sqrt(2))
+print(res2)
+
+print("Fracciones y formato:")
+print("a) 1/7")
+print(1/7)
+
+print("b) options(digits=3); 1/7")
+options(digits = 3); print(1/7)
+
+print("c) options(digits=6); 1/7")
+options(digits = 6); print(1/7)
+
+print("d) round(67.45)")
+print(round(67.45))
+
+print("e) round(75.324568,2)")
+print(round(75.324568, 2))
+
+print("f) options(digits=7)")
+options(digits = 7); print("digits restaurados a 7")
+
+print("g) signif(56.345458234234,2)")
+print(signif(56.345458234234, 2))
+
+print("h) signif(56.345458234234)")
+print(signif(56.345458234234))
+
+print("i) exp(-30)")
+print(exp(-30))
+
+print("j) options(scipen=999) para evitar notación científica")
+options(scipen = 999); print("scipen puesto a 999")
+
+print("k) exp(-30) (ahora sin notación científica si corresponde)")
+print(exp(-30))
+
+print("l) options(scipen=0) (volver a comportamiento por defecto)")
+options(scipen = 0); print("scipen restaurado a 0")
+
+options(digits = 7) # restaurar por seguridad
+
+
+# =====================================================
+# SESIÓN 2 — Variables, impresión y limpieza
+# =====================================================
+
+print("Constantes:")
+e <- exp(1)
+print(paste("e =", e))
+x <- 0.034
+x0 <- e^(2 * x)
+print(paste("x =", x))
+print(paste("x0 =", x0))
+
+# Concatenar / pegar expresiones
+txt <- "El valor de x0 es:"
+cat(txt, x0, "\n")
+print(paste(txt, x0))
+print(paste0(txt, x0))
+
+# Asignación e impresión
+x0 <- 1
+x1 <- x0 - pi * x0 + 1
+print(x1)
+
+# Listado y limpieza
+print("Objetos actuales:")
+print(ls())
+print("Eliminando todos los objetos temporales...")
+rm(list = ls())
+print("Lista después de rm():")
+print(ls())
+
+# Recreamos
+e <- exp(1)
+x0 <- 1
+x1 <- x0 - pi * x0 + 1
+cat("Recreadas: x0 =", x0, " x1 =", x1, "\n")
+
+
+# =====================================================
+# SESIÓN 3 — Funciones y gráficas
+# =====================================================
+
+fun1 <- function(x, a, b, h, k) {
+  res <- a + b * cos(h * x + k)
+  return(res)
+}
+
+Discriminante <- function(a, b, c) {
+  res <- b^2 - 4 * a * c
+  return(res)
+}
+
+print("fun1(2,1,3,2,0.5) =")
+print(fun1(2,1,3,2,0.5))
+print("Discriminante(1,5,6) =")
+print(Discriminante(1,5,6))
+
+# Gráfica
+fun2 <- function(x, h, k) {
+  (1 / h) * sin(k * x)
+}
+f2 <- fun2(1:100, 2, 3)
+plot(f2, type = "l", col = "red", lwd = 2,
+     main = "Gráfico de la función f2",
+     xlab = "índice (x)",
+     ylab = "f(x) = (1/h) * sin(k*x)")
+
+
+# =====================================================
+# SESIÓN 4 — Vectores, tablas y matrices
+# =====================================================
+
+tel <- c("a", "b", "c")
+set.seed(42)
+muestra <- sample(tel, 15, TRUE)
+print("Muestra ordenada:")
+print(sort(muestra))
+print("Tabla de frecuencias:")
+print(table(muestra))
+
+t <- table(muestra)
+barplot(t, col = rainbow(length(t)), main = "Frecuencia de símbolos")
+
+# Vectores
+X1 <- c(1.2, 1.5, 1.9, 1.1); print(X1)
+X2 <- 1:20; print(X2)
+X3 <- seq(20, 1, by = -0.1); print(head(X3, 10))
+X4 <- seq(1, 20, by = 0.1); print(length(X4))
+
+n1 <- length(X1); n2 <- length(X2); n3 <- length(X3); n4 <- length(X4)
+print(c(n1, n2, n3, n4))
+
+# Números aleatorios
+set.seed(123)
+x <- runif(100, -3.3, 3.3); print(head(x, 10))
+x_small <- runif(20, -1, 1); print(x_small)
+xx <- 100 - x_small; print(xx)
+
+# Matrices
+M <- matrix(1:12, nrow = 3, byrow = TRUE)
+print("Matriz M:"); print(M)
+print("Transpuesta:"); print(t(M))
+print("Sumas por fila:"); print(rowSums(M))
+print("Sumas por columna:"); print(colSums(M))
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
